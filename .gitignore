@@ -2,6 +2,7 @@
 /.env.local
 /.env.eos
 /.env.jungle
+/.env.exsat-testnet
 /node_modules/
 /src/lib/contracts/*.ts
 /dist/
