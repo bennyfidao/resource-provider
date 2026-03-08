@@ -19,9 +19,14 @@ export function getPowerupParamsCPU(
 	const cpu_cost = Asset.from(0, ANTELOPE_SYSTEM_TOKEN);
 	const cpu_frac = Int64.from(0);
 	if (requirements.cpuRequired) {
-		// managerLog.debug('Calculating cpu cost', objectify({ ms, requirements }));
-		const cost = powerup.cpu.price_per_ms(sample, Number(ms));
-		// managerLog.debug('CPU Cost', objectify({ cost, cpu_cost, cpu_frac }));
+		let cost = -1;
+		try {
+			// managerLog.debug('Calculating cpu cost', objectify({ ms, requirements }));
+			cost = powerup.cpu.price_per_ms(sample, Number(ms));
+			// managerLog.debug('CPU Cost', objectify({ cost, cpu_cost, cpu_frac }));
+		} catch (error) {
+			managerLog.error('cpu price_per_ms failed', { error: String(error) });
+		}
 		cpu_frac.add(powerup.cpu.frac_by_ms(sample, Number(ms)));
 		cpu_cost.units.add(Asset.fromFloat(cost, ANTELOPE_SYSTEM_TOKEN).units);
 	}

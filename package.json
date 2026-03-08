@@ -4,6 +4,7 @@
 	"module": "src/index.ts",
 	"type": "module",
 	"scripts": {
+		"db:migrations": "bun run src/lib/db/run-migrations.ts",
 		"dev": "bun run --watch src/index.ts start",
 		"dev/manager": "bun run --watch src/index.ts start manager",
 		"dev/api": "bun run --watch src/index.ts start api",
